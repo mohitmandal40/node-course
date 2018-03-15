@@ -1,7 +1,10 @@
 const express = require('express');
 const hbs = require('hbs');
 
+const port = process.env.PORT ||  3000;
 var app = express();
+
+
 
 // to reuse the code we use registerPartials 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -18,12 +21,12 @@ app.use((req,res,next) => {
     next();
 })
 
-app.use((req,res,next) => {
-    res.render('maintainence.hbs',{
-        text : 'we will be right back',
-        para : 'this is the paragraph'
-    })
-})
+// app.use((req,res,next) => {
+//     res.render('maintainence.hbs',{
+//         text : 'we will be right back',
+//         para : 'this is the paragraph'
+//     })
+// })
 
 //for simple routing of pages & render static data
 app.use(express.static(__dirname + '/public'))
@@ -48,6 +51,6 @@ app.get('/bad',(req,res) => {
     });
 })
 
-app.listen(3000,() => {
-    console.log('port is serving on 3000')
+app.listen(port,() => {
+    console.log(`port is serving on ${port}`);
 });
