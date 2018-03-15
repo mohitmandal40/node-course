@@ -15,11 +15,11 @@ hbs.registerHelper('getFullYear',() => {
     return new Date().getFullYear();
 });
 
-app.use((req,res,next) => {
-    var now = new Date().toString();
-    console.log(`${now}: ${req.method} ${req.url}`);
-    next();
-})
+// app.use((req,res,next) => {
+//     var now = new Date().toString();
+//     console.log(`${now}: ${req.method} ${req.url}`);
+//     next();
+// })
 
 // app.use((req,res,next) => {
 //     res.render('maintainence.hbs',{
@@ -49,6 +49,12 @@ app.get('/bad',(req,res) => {
     res.send({
         errorMsg : 'unable to find request'
     });
+})
+
+app.get('/projects',(req,res) => {
+    res.render('project.hbs',{
+        pageTitle : 'my portfolio'
+    })
 })
 
 app.listen(port,() => {
